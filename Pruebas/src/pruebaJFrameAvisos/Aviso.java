@@ -12,7 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
-
+import java.awt.Font;
+/**
+ * Es necesario poner las imágenes para que se vea...
+ * @author JESUSHGW10
+ *
+ */
 public class Aviso extends JFrame {
 
 	private static final int xBackground = 183;
@@ -20,7 +25,7 @@ public class Aviso extends JFrame {
 	private static final int xCloseButton = 12;
 	private static final int yCloseButton = 11;
 	private static final int yBorder = 115;
-	private JLabel text1, background;
+	private JLabel text1, background, lblSolucion;
 	private JLayeredPane layeredPane;
 	private JButton btnX;
 	
@@ -35,8 +40,12 @@ public class Aviso extends JFrame {
 	
 		layeredPane = new JLayeredPane();
 		text1 = new JLabel();
+		text1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		text1.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnX = new JButton();
 		background = new JLabel();
+		lblSolucion = new JLabel();
+		lblSolucion.setVerticalAlignment(SwingConstants.TOP);
 
 		background.setIcon(new ImageIcon("Fondoaviso2.png"));
 		background.setBounds(0,0,xBackground,yBackground);
@@ -71,14 +80,21 @@ public class Aviso extends JFrame {
 		// Da formato a la etiqueta
 		text1.setText(mensaje);
 		text1.setHorizontalAlignment(SwingConstants.CENTER);
-		text1.setBounds(0, 0, xBackground, yBackground);
+		text1.setBounds(0, 0, 183, 40);
+		
+		lblSolucion.setText("tiene una solución");
+		lblSolucion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSolucion.setBounds(0, 38, 183, 34);
+		layeredPane.add(lblSolucion);
 		
 		layeredPane.add(background, new Integer(1));
 		layeredPane.add(text1, new Integer(2));
-		layeredPane.add(btnX, new Integer(3));
+		layeredPane.add(lblSolucion, new Integer(3));
+		layeredPane.add(btnX, new Integer(4));
 		
 		// Incluye el panel en el jframe
 		setContentPane(layeredPane);
+		
 		
 
 		// Hace las animaciones
@@ -123,7 +139,7 @@ public class Aviso extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Aviso("Alguien tiene solución"); // Abre una ventana
+					new Aviso("Jesús Hernández"); // Abre una ventana
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
